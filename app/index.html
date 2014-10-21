@@ -30,17 +30,15 @@
 
 
 
-<form name="reg" ng-submit="setRegion()" ng-controller="RealmCtrl">
-    <label>Set region:</label><input type="text" ng-model="region" />
-Region: {{ region }}
+<form name="reg" ng-controller="RealmCtrl">
+    <label>Set region:</label><input type="text" ng-model="store.region" />
 </form>
-<form name="real" ng-submit="setRealm()" ng-controller="RealmCtrl">
-    <label>Set realm:</label><input type="text" ng-model="realm" />
-Realm: {{ realm }}
+<form name="rel" ng-controller="RealmCtrl">
+    <label>Set realm:</label><input type="text" ng-model="store.realm" />
 </form>
+
 <form name="itt" ng-submit="getItem()" ng-controller="SearchItemCtrl">
     <label>Search item:</label><input type="text" ng-model="itemId" />
-    {{ item.name }}
 </form>
 
 

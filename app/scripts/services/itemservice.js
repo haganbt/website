@@ -31,42 +31,7 @@ angular.module('ahpwnApp')
     };
 })
 
-.factory('Item', function ()
+.factory('RealmStore', function ()
 {
     return { region: 'us', realm: 'dalaran' };
-})
-
-.factory('Salad', function ()
-{
-    return { msg: 'tacos' };
-})
-
-.factory('RealmService', function ()
-{
-    var region = 'us';
-    var realm = 'dalaran';
-
-    var delegator = {};
-
-    delegator.setRegion = function (givenRegion)
-    {
-        region = givenRegion;
-    };
-
-    delegator.setRealm = function (givenRealm)
-    {
-        realm = givenRealm;
-    };
-
-    delegator.getRegion = function ()
-    {
-        return region;
-    };
-
-    delegator.getRealm = function ()
-    {
-        return realm;
-    };
-
-    return delegator;
 });

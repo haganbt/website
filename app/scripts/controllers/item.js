@@ -8,7 +8,7 @@
  * Controller of the ahpwnApp
  */
 angular.module('ahpwnApp')
-.controller('SearchItemCtrl', function ($scope, $resource, ItemService, RealmService, ItemStore)
+.controller('SearchItemCtrl', function ($scope, $resource, ItemService, RealmStore, ItemStore)
 {
     $scope.item = ItemStore;
 
@@ -16,8 +16,8 @@ angular.module('ahpwnApp')
     {
         ItemService.get(
         {
-            region: RealmService.getRegion(),
-            realm: RealmService.getRealm(),
+            region: RealmStore.region,
+            realm: RealmStore.realm,
             item: $scope.itemId
         })
         .$promise.then(function (givenItem)
@@ -35,21 +35,12 @@ angular.module('ahpwnApp')
     $scope.item = ItemStore;
 })
 
-.controller('RealmCtrl', function ($scope, RealmService){
-    $scope.realm = RealmService.getRealm();
-    $scope.region = RealmService.getRegion();
+.controller('Another', function ($scope, RealmStore)
+{
+    $scope.store = RealmStore;
+})
 
-    $scope.setRealm = function ()
-    {
-        console.log('setting realm');
-        RealmService.setRealm($scope.realm);
-        console.log(RealmService.getRealm());
-    };
-
-    $scope.setRegion = function ()
-    {
-        console.log('setting region');
-        RealmService.setRegion($scope.region);
-        console.log(RealmService.getRegion());
-    };
+.controller('RealmCtrl', function ($scope, RealmStore)
+{
+    $scope.store = RealmStore;
 });
