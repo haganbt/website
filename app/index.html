@@ -19,7 +19,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
-    <!-- Add your site or application content here -->
+    <script type="text/javascript" src="http://rt-us1.herokuapp.com/faye/client.js"></script>
     <div class="container">
       <div class="header">
         <ul class="nav nav-pills pull-right">
@@ -28,21 +28,28 @@
           <li><a ng-href="#/item">Item</a></li>
         </ul>
 
-
-
 <form name="reg" ng-controller="RealmCtrl">
-    <label>Set region:</label><input type="text" ng-model="store.region" />
+    <label>region:</label>
+    <input type="radio" ng-model="store.region" value="us"> US
+    <input type="radio" ng-model="store.region" value="eu"> EU
 </form>
-<form name="rel" ng-controller="RealmCtrl">
-    <label>Set realm:</label><input type="text" ng-model="store.realm" />
-</form>
+
+<div ng-controller="RealmCtrl">
+    <select ng-model="store.realm" ng-options="realm.name for realm in realms"></select>
+</div>
 
 <form name="itt" ng-submit="getItem()" ng-controller="SearchItemCtrl">
     <label>Search item:</label><input type="text" ng-model="itemId" />
 </form>
 
-
-
+<script type="text/javascript">
+    var client = new Faye.Client('http://rt-us1.herokuapp.com');
+    
+    client.subscribe('/items/72092', function (msg)
+    {
+        console.log('msg', msg);
+    });
+</script>
 
       </div>
 
