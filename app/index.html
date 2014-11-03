@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <title></title>
     <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -12,6 +11,7 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:300' rel='stylesheet' type='text/css'>
     <!-- endbuild -->
   </head>
   <body ng-app="ahpwnApp">
@@ -21,44 +21,89 @@
 
     <script type="text/javascript" src="http://rt-us1.herokuapp.com/faye/client.js"></script>
     <div class="container">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li class="active"><a ng-href="#">Home</a></li>
-          <li><a ng-href="#/about">About</a></li>
-          <li><a ng-href="#/item">Item</a></li>
-        </ul>
+        <div class="big">ANZU.IO</div>
+        <div class="intro">ANZU.IO is a real-time World of Warcraft auction house pricing data API.</div>
 
-<form name="reg" ng-controller="RealmCtrl">
-    <label>region:</label>
-    <input type="radio" ng-model="store.region" value="us"> US
-    <input type="radio" ng-model="store.region" value="eu"> EU
-</form>
+        <div class="floater">
+          <div class="box">
+              <div class="pad">
+                  <div class="item">Ghost Iron Ore</div>
+                  <div class="price">19.40</div>
+              </div>
+          </div>
 
-<div ng-controller="RealmCtrl">
-    <select ng-model="store.realm" ng-options="realm.name for realm in realms"></select>
-</div>
+          <div class="box">
+              <div class="pad">
+                  <div class="item">Giant Dinosaur Bones</div>
+                  <div class="price">34.96</div>
+              </div>
+          </div>
 
-<form name="itt" ng-submit="getItem()" ng-controller="SearchItemCtrl">
-    <label>Search item:</label><input type="text" ng-model="itemId" />
-</form>
+          <div class="boxr">
+              <div class="pad">
+                  <div class="item">Windwool Cloth</div>
+                  <div class="price">10.12</div>
+              </div>
+          </div>
+        </div>
 
-<script type="text/javascript">
-    var client = new Faye.Client('http://rt-us1.herokuapp.com');
-    
-    client.subscribe('/items/72092', function (msg)
-    {
-        console.log('msg', msg);
-    });
-</script>
-
-      </div>
-
-      <div ng-view=""></div>
-
-      <div class="footer">
-        <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>
-      </div>
     </div>
+
+
+    <div class="two">
+        <div class="container">
+            <div class="section-header">
+                Global Data
+            </div>
+
+            <p>This resource retrieves current global pricing data for a given item.</p>
+
+            <h4>Request URI</h4>
+            <textarea>api.anzu.io/v1/global/item/72092</textarea>
+            <pre>api.anzu.io/v1/global/item/72092</pre>
+
+            <h4>Parameters</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>type</td>
+                    <td>
+                        <select name="type">
+                            <option value="item" selected>item</option>
+                            <option value="pet">pet</option>
+                        </select>
+                    </td>
+                    <td>Specifies either regular "item" type or "battle pet" type.</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td><input type="text" value="72092" /></td>
+                    <td>Item or battle pet ID.</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <button>Try</button>
+
+            <h4>Response</h4>
+            <pre>
+{
+    "id": 72092,
+    "marketPrice": 12175
+}</pre>
+
+        </div>
+    </div>
+
+    <div ng-view=""></div>
+
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -83,18 +128,6 @@
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/carousel.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
-    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>

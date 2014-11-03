@@ -9,7 +9,7 @@
  */
 
 angular.module('ahpwnApp')
-.controller('SearchItemCtrl', function ($scope, $resource, ItemService, RealmStore, ItemStore)
+.controller('SearchItemCtrl', function ($scope, ItemService, RealmStore, ItemStore)
 {
     $scope.item = ItemStore;
 
@@ -18,21 +18,30 @@ angular.module('ahpwnApp')
         ItemService.get(
         {
             region: RealmStore.region,
-            realm: RealmStore.realm.name,
+            realm: RealmStore.realm,
             item: $scope.itemId
         })
         .$promise.then(function (givenItem)
         {
-            ItemStore.name = givenItem.name;
-            ItemStore.marketPrice = givenItem.marketPrice;
-            ItemStore.historicalPrice = givenItem.historicalPrice;
-            ItemStore.quantity = givenItem.quantity;
+            ItemStore = givenItem;
         });
     };
 })
 
-.controller('ItemCtrl', function ($scope, ItemStore)
+.controller('ItemCtrl', function ($scope, ItemService, RealmStore, ItemStore)
 {
+    ItemService.get(
+    {
+        region: RealmStore.region,
+        realm: RealmStore.realm,
+        item: 72092
+    })
+    .$promise.then(function (givenItem)
+    {
+        $scope.item = givenItem;
+        ItemStore = givenItem;
+    });
+
     $scope.item = ItemStore;
 })
 

@@ -11,7 +11,7 @@
 angular.module('ahpwnApp')
 .factory('ItemService', function ($resource)
 {
-    var baseUrl = 'http://us1.ahpwn.com/v1';
+    var baseUrl = 'http://api.anzu.io/v1';
     return $resource(baseUrl + '/:region/:realm/item/:item',
     {
         region: '@region',
@@ -22,13 +22,7 @@ angular.module('ahpwnApp')
 
 .factory('ItemStore', function ()
 {
-    return {
-        id: 1,
-        name: 'Test',
-        marketPrice: 1,
-        historicalPrice: 2,
-        quantity: 3
-    };
+    return {};
 })
 
 .factory('RealmStore', function ()
