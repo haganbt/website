@@ -52,14 +52,11 @@
 
     <div class="two">
         <div class="container">
-            <div class="section-header">
-                Global Data
-            </div>
+            <div class="section-header">Global Data</div>
 
             <p>This resource retrieves current global pricing data for a given item.</p>
 
             <h4>Request URI</h4>
-            <textarea>api.anzu.io/v1/global/item/72092</textarea>
             <pre>api.anzu.io/v1/global/item/72092</pre>
 
             <h4>Parameters</h4>
@@ -72,6 +69,70 @@
                     </tr>
                 </thead>
                 <tbody>
+                <tr>
+                    <td>type</td>
+                    <td>
+                        <select name="type" class="selecter_1">
+                            <option value="item" selected>item</option>
+                            <option value="pet">pet</option>
+                        </select>
+                    </td>
+                    <td>Specifies either regular "item" type or "battle pet" type.</td>
+                </tr>
+                <tr>
+                    <td>id</td>
+                    <td><input type="text" value="72092" /></td>
+                    <td>Item or battle pet ID.</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <input type="submit" value="Try It" />
+
+            <h4>Response</h4>
+            <pre>
+{
+    "id": 72092,
+    "marketPrice": 12175
+}</pre>
+
+        </div>
+    </div>
+
+    <div class="three">
+        <div class="container">
+            <div class="section-header">Realm Data</div>
+
+            <p>This resource retrieves current realm pricing data for a given item.</p>
+
+            <h4>Request URI</h4>
+            <pre>api.anzu.io/v1/us/dalaran/item/72092</pre>
+
+            <h4>Parameters</h4>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>region</td>
+                    <td>
+                        <select name="region">
+                            <option value="us" selected>us</option>
+                            <option value="eu">eu</option>
+                        </select>
+                    </td>
+                    <td>Realm localization region.</td>
+                </tr>
+                <tr>
+                    <td>realm</td>
+                    <td><input type="text" value="dalaran" /></td>
+                    <td>Realm slug (no special characters, spaces replaced with dashes)</td>
+                </tr>
                 <tr>
                     <td>type</td>
                     <td>
@@ -90,20 +151,55 @@
                 </tbody>
             </table>
 
-            <button>Try</button>
+            <input type="submit" value="Try It" />
 
             <h4>Response</h4>
             <pre>
 {
     "id": 72092,
-    "marketPrice": 12175
+    "region": "us",
+    "realm": "dalaran",
+    "currentPrice": 12175,
+    "historicalAverage": 1923813,
+    "quantity": 8192
 }</pre>
-
         </div>
     </div>
 
-    <div ng-view=""></div>
+    <div class="four">
+        <div class="container">
+            <div class="section-header">FAQ</div>
 
+            <h4>What is a realm slug?</h4>
+            <p>The realm slug is the realm name in all lower case without any apostrophes or special characters, and spaces are replaced with dashes. For example, for the realm <code>Blade's Edge</code>, the slug would be <code>blades-edge</code>. You can get a list of all the valid realm slugs (on which ANZU.IO are based on) using the Realm Status resource from the Battle.net API. See <a href="https://dev.battle.net/">https://dev.battle.net/</a> for more information.</p>
+
+            <h4>How is the global market price calculated?</h4>
+            <p>The global market price is an exponential moving average that includes every single realm at least once. In simpler terms, the global market price is roughly a weighted average of the item price over the last hour - however the average is not calculated on a time basis but rather on a count basis. The exact formula is defined below:</p>
+
+            <pre>newAverage = (currentPrice * 0.0067) + (lastAverage * (1 - 0.0067))</pre>
+
+            <h4>How is the realm current price calculated?</h4>
+            <p>The current price is a 15th percentile (15% truncated distribution) mean of the cheapest auctions present in the current realm snapshot.</p>
+
+            <h4>How is the realm historical average calculated?</h4>
+            <p>The realm historical average is an exponential moving average that is weighted towards the last 240 price points. If the price is updated every hour, this would translate into a 10-day moving average (10 * 24 = 240). However depending on item and realm update frequency this period could be longer. The exact formula is defined below:</p>
+
+            <pre>newAverage = (currentPrice * 0.0083) + (lastAverage * (1 - 0.0083))</pre>
+
+            <h4>How does your service work?</h4>
+            <p>A technical demonstration article will be released soon that explains the technical architecture of this service. For the time being, you are free to checkout the project on <a href="https://github.com/anzuio">Github</a>.</p>
+
+            <h4>Can you add a new feature?</h4>
+            <p>Feature requests will be considered on an individual basis. Please get in contact using one of the methods listed at the bottom of this page to submit your feature request. If you are a developer, you can feel free to submit merge pull requests or fork the project.</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="fitem"><a href="https://twitter.com/anzuio">Twitter</a> - <a href="https://github.com/anzuio">Github</a> - hi@anzu.io</div>
+            <div class="small">World of Warcraft, Warcraft and Blizzard Entertainment are trademarks or registered trademarks of Blizzard Entertainment, Inc.</div>
+        </div>
+    </div>
 
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -128,17 +224,31 @@
     <!-- bower:js -->
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/affix.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/alert.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/button.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/carousel.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/collapse.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/dropdown.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tab.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/transition.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/scrollspy.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/modal.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/tooltip.js"></script>
+    <script src="bower_components/bootstrap-sass-official/assets/javascripts/bootstrap/popover.js"></script>
     <script src="bower_components/angular-resource/angular-resource.js"></script>
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/Selecter/jquery.fs.selecter.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/selecter.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/item.js"></script>
