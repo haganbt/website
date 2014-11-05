@@ -56,8 +56,10 @@
 
             <p>This resource retrieves current global pricing data for a given item.</p>
 
+            <form name="global-data" ng-submit="get()" ng-controller="GlobalCtrl">
+
             <h4>Request URI</h4>
-            <pre>api.anzu.io/v1/global/item/72092</pre>
+            <pre>api.anzu.io/v1/global/{{ type }}/{{ id }}</pre>
 
             <h4>Parameters</h4>
             <table>
@@ -71,17 +73,12 @@
                 <tbody>
                 <tr>
                     <td>type</td>
-                    <td>
-                        <select name="type" class="selecter_1">
-                            <option value="item" selected>item</option>
-                            <option value="pet">pet</option>
-                        </select>
-                    </td>
+                    <td><select ng-model="type" ng-options="type for type in types"></select></td>
                     <td>Specifies either regular "item" type or "battle pet" type.</td>
                 </tr>
                 <tr>
                     <td>id</td>
-                    <td><input type="text" value="72092" /></td>
+                    <td><input type="text" ng-model="id" /></td>
                     <td>Item or battle pet ID.</td>
                 </tr>
                 </tbody>
@@ -90,11 +87,9 @@
             <input type="submit" value="Try It" />
 
             <h4>Response</h4>
-            <pre>
-{
-    "id": 72092,
-    "marketPrice": 12175
-}</pre>
+            <pre>{{ data }}</pre>
+
+            </form>
 
         </div>
     </div>
@@ -105,8 +100,10 @@
 
             <p>This resource retrieves current realm pricing data for a given item.</p>
 
+            <form name="realm-data" ng-submit="get()" ng-controller="RealmCtrl">
+
             <h4>Request URI</h4>
-            <pre>api.anzu.io/v1/us/dalaran/item/72092</pre>
+            <pre>api.anzu.io/v1/{{ region }}/{{ realm }}/{{ type }}/{{ id }}</pre>
 
             <h4>Parameters</h4>
             <table>
@@ -120,32 +117,22 @@
                 <tbody>
                 <tr>
                     <td>region</td>
-                    <td>
-                        <select name="region">
-                            <option value="us" selected>us</option>
-                            <option value="eu">eu</option>
-                        </select>
-                    </td>
+                    <td><select ng-model="region" ng-options="region for region in regions"></select></td>
                     <td>Realm localization region.</td>
                 </tr>
                 <tr>
                     <td>realm</td>
-                    <td><input type="text" value="dalaran" /></td>
-                    <td>Realm slug (no special characters, spaces replaced with dashes)</td>
+                    <td><input type="text" ng-model="realm" /></td>
+                    <td>Realm slug (no apostrophes, spaces replaced with dashes)</td>
                 </tr>
                 <tr>
                     <td>type</td>
-                    <td>
-                        <select name="type">
-                            <option value="item" selected>item</option>
-                            <option value="pet">pet</option>
-                        </select>
-                    </td>
+                    <td><select ng-model="type" ng-options="type for type in types"></select></td>
                     <td>Specifies either regular "item" type or "battle pet" type.</td>
                 </tr>
                 <tr>
                     <td>id</td>
-                    <td><input type="text" value="72092" /></td>
+                    <td><input type="text" ng-model="id" /></td>
                     <td>Item or battle pet ID.</td>
                 </tr>
                 </tbody>
@@ -154,15 +141,9 @@
             <input type="submit" value="Try It" />
 
             <h4>Response</h4>
-            <pre>
-{
-    "id": 72092,
-    "region": "us",
-    "realm": "dalaran",
-    "currentPrice": 12175,
-    "historicalAverage": 1923813,
-    "quantity": 8192
-}</pre>
+            <pre>{{ data }}</pre>
+
+            </form>
         </div>
     </div>
 
@@ -171,7 +152,7 @@
             <div class="section-header">FAQ</div>
 
             <h4>What is a realm slug?</h4>
-            <p>The realm slug is the realm name in all lower case without any apostrophes or special characters, and spaces are replaced with dashes. For example, for the realm <code>Blade's Edge</code>, the slug would be <code>blades-edge</code>. You can get a list of all the valid realm slugs (on which ANZU.IO are based on) using the Realm Status resource from the Battle.net API. See <a href="https://dev.battle.net/">https://dev.battle.net/</a> for more information.</p>
+            <p>The realm slug is the realm name in all lower case without any apostrophes, and spaces are replaced with dashes. For example, for the realm <code>Blade's Edge</code>, the slug would be <code>blades-edge</code>. You can get a list of all the valid realm slugs (on which ANZU.IO are based on) using the Realm Status resource from the Battle.net API. See <a href="https://dev.battle.net/">https://dev.battle.net/</a> for more information.</p>
 
             <h4>How is the global market price calculated?</h4>
             <p>The global market price is an exponential moving average that includes every single realm at least once. In simpler terms, the global market price is roughly a weighted average of the item price over the last hour - however the average is not calculated on a time basis but rather on a count basis. The exact formula is defined below:</p>
@@ -242,13 +223,11 @@
     <script src="bower_components/angular-animate/angular-animate.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/angular-route/angular-route.js"></script>
-    <script src="bower_components/Selecter/jquery.fs.selecter.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="scripts/selecter.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/item.js"></script>

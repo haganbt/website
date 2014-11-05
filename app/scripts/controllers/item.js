@@ -9,53 +9,53 @@
  */
 
 angular.module('ahpwnApp')
-.controller('SearchItemCtrl', function ($scope, ItemService, RealmStore, ItemStore)
+.controller('RealmCtrl', function ($scope, RealmService)
 {
-    $scope.item = ItemStore;
+    $scope.regions = [ 'us', 'eu' ];
+    $scope.types = [ 'item', 'pet' ];
 
-    $scope.getItem = function ()
+    $scope.region = $scope.regions[0];
+    $scope.realm = 'dalaran';
+    $scope.type = $scope.types[0];
+    $scope.id = '72092';
+
+    $scope.get = function ()
     {
-        ItemService.get(
+        RealmService.get(
         {
-            region: RealmStore.region,
-            realm: RealmStore.realm,
-            item: $scope.itemId
+            region: $scope.region,
+            realm: $scope.realm,
+            type: $scope.type,
+            id: $scope.id
         })
         .$promise.then(function (givenItem)
         {
-            ItemStore = givenItem;
+            $scope.data = angular.toJson(givenItem, true);
         });
     };
+
+    $scope.get();
 })
 
-.controller('ItemCtrl', function ($scope, ItemService, RealmStore, ItemStore)
+.controller('GlobalCtrl', function ($scope, GlobalService)
 {
-    ItemService.get(
+    $scope.types = [ 'item', 'pet' ];
+
+    $scope.type = $scope.types[0];
+    $scope.id = '72092';
+
+    $scope.get = function ()
     {
-        region: RealmStore.region,
-        realm: RealmStore.realm,
-        item: 72092
-    })
-    .$promise.then(function (givenItem)
-    {
-        $scope.item = givenItem;
-        ItemStore = givenItem;
-    });
+        GlobalService.get(
+        {
+            type: $scope.type,
+            id: $scope.id
+        })
+        .$promise.then(function (givenItem)
+        {
+            $scope.data = angular.toJson(givenItem, true);
+        });
+    };
 
-    $scope.item = ItemStore;
-})
-
-.controller('Another', function ($scope, RealmStore)
-{
-    $scope.store = RealmStore;
-})
-
-.controller('RealmCtrl', function ($scope, RealmStore)
-{
-    $scope.realms = [
-        { id: 1, name: 'dalaran' },
-        { id: 2, name: 'ysera' }
-    ];
-
-    $scope.store = RealmStore;
+    $scope.get();
 });

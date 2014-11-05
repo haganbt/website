@@ -9,23 +9,24 @@
  */
 
 angular.module('ahpwnApp')
-.factory('ItemService', function ($resource)
+.factory('RealmService', function ($resource)
 {
     var baseUrl = 'http://api.anzu.io/v1';
-    return $resource(baseUrl + '/:region/:realm/item/:item',
+    return $resource(baseUrl + '/:region/:realm/:type/:id',
     {
         region: '@region',
         realm: '@realm',
-        item: '@item'
+        type: '@type',
+        id: '@id'
     });
 })
 
-.factory('ItemStore', function ()
+.factory('GlobalService', function ($resource)
 {
-    return {};
-})
-
-.factory('RealmStore', function ()
-{
-    return { region: 'us', realm: 'dalaran' };
+    var baseUrl = 'http://api.anzu.io/v1';
+    return $resource(baseUrl + '/global/:type/:id',
+    {
+        type: '@type',
+        id: '@id'
+    });
 });
