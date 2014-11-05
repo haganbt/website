@@ -133,7 +133,7 @@ body {
 .section-header {
     padding-top: 60px;
     padding-bottom: 20px;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
     color: #444;
 }
@@ -141,7 +141,7 @@ body {
 .four .section-header {
     padding-top: 60px;
     padding-bottom: 0px;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: bold;
     color: #fff;
 }
@@ -213,7 +213,7 @@ pre {
     padding-left: 15px;
     background: #e4e4e4;
     font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
-    color: #555;
+    color: #111;
     line-height: 20px;
 }
 
