@@ -58,4 +58,14 @@ angular.module('ahpwnApp')
     };
 
     $scope.get();
+})
+
+.controller('RealtimeCtrl', function ($scope)
+{
+    var client = new Faye.Client('http://rt-us1.herokuapp.com');
+
+    client.subscribe('/items/72092', function (msg)
+    {
+        console.log('72092:', msg);
+    });
 });
