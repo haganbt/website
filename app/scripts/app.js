@@ -1,44 +1,97 @@
 'use strict';
 
-/**
- * @ngdoc overview
- * @name ahpwnApp
- * @description
- * # ahpwnApp
- *
- * Main module of the application.
- */
+// ANZU.IO
+// Deomitrus / Andrew Breja
+
 angular
 .module('ahpwnApp',
 [
-    'ngAnimate',
-    'ngCookies',
     'ngResource',
-    'ngRoute',
-    'ngSanitize',
-    'ngTouch'
 ])
 
-.config(function ($routeProvider)
+.factory('RealmService', function ($resource)
 {
-    $routeProvider
-    .when('/',
+    var baseUrl = 'http://api.anzu.io/v1';
+    return $resource(baseUrl + '/:region/:realm/:type/:id',
     {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-    })
-    .when('/about',
-    {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-    })
-    .when('/item',
-    {
-        templateUrl: 'views/item.html',
-        controller: 'ItemCtrl'
-    })
-    .otherwise(
-    {
-        redirectTo: '/'
+        region: '@region',
+        realm: '@realm',
+        type: '@type',
+        id: '@id'
     });
+})
+
+.factory('GlobalService', function ($resource)
+{
+    var baseUrl = 'http://api.anzu.io/v1';
+    return $resource(baseUrl + '/global/:type/:id',
+    {
+        type: '@type',
+        id: '@id'
+    });
+})
+
+.controller('realmctrl', function ($scope, realmservice)
+{
+    $scope.regions = [ 'us', 'eu' ];
+    $scope.types = [ 'item', 'pet' ];
+
+    $scope.region = $scope.regions[0];
+    $scope.realm = 'dalaran';
+    $scope.type = $scope.types[0];
+    $scope.id = '72092';
+
+    $scope.get = function ()
+    {
+        realmservice.get(
+        {
+            region: $scope.region,
+            realm: $scope.realm,
+            type: $scope.type,
+            id: $scope.id
+        })
+        .$promise.then(function (givenitem)
+        {
+            $scope.data = angular.tojson(givenitem, true);
+        },
+        function (error)
+        {
+            if (error.data)
+            {
+                $scope.data = angular.tojson(error.data, true);
+            }
+        });
+    };
+
+    $scope.get();
+})
+
+.controller('globalctrl', function ($scope, globalservice)
+{
+    $scope.types = [ 'item', 'pet' ];
+
+    $scope.type = $scope.types[0];
+    $scope.id = '72092';
+
+    $scope.get = function ()
+    {
+        globalservice.get(
+        {
+            type: $scope.type,
+            id: $scope.id
+        })
+        .$promise.then(function (givenitem)
+        {
+            $scope.data = angular.tojson(givenitem, true);
+        },
+        function (error)
+        {
+            if (error.data)
+            {
+                $scope.data = angular.tojson(error.data, true);
+            }
+        });
+    };
+
+    $scope.get();
 });
