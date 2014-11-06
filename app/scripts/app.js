@@ -1,13 +1,8 @@
 'use strict';
 
-/**
- * @ngdoc overview
- * @name ahpwnApp
- * @description
- * # ahpwnApp
- *
- * Main module of the application.
- */
+// ANZU.IO
+// Deomitrus / Andrew Breja
+
 angular
 .module('ahpwnApp',
 [
