@@ -1,0 +1,247 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.big {
+    color: #007eff;
+    font-size: 100px;
+    letter-spacing: -5px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 80px;
+    padding-bottom: 40px;
+}
+
+.intro {
+    margin-top: 40px;
+    width: 700px;
+    color: #464646;
+    font-size: 34px;
+    text-align: center;
+    margin-bottom: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 44px;
+}
+
+.floater {
+    width: 680px;
+    height: 120px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.box {
+    float: left;
+    border-top: 2px solid #007eff;
+    width: 200px;
+    margin-right: 40px;
+}
+
+.boxr {
+    float: left;
+    border-top: 2px solid #007eff;
+    width: 200px;
+}
+
+.pad {
+    padding-top: 8px;
+}
+
+.item {
+    color: #464646;
+    font-size: 18px;
+}
+
+.price {
+    padding-top: 4px;
+    font-size: 32px;
+}
+
+.two {
+    background: #f1f1f1;
+    width: 100%;
+    height: 100%;
+    margin-top: 60px;
+    padding-bottom: 60px;
+}
+
+.three {
+    background: #c0dfff;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 60px;
+}
+
+.three pre {
+    font-size: 14px;
+    padding: 10px;
+    padding-right: 20px;
+    padding-left: 15px;
+    background: #aad2fb;
+    font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+    color: #111;
+    line-height: 20px;
+}
+
+.three th {
+    color: #7aa4d0;
+}
+
+.three thead {
+    border-bottom: 1px solid #a2c5ea;
+}
+
+.four {
+    background: #007eff;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 60px;
+}
+
+.footer {
+    background: #222;
+    width: 100%;
+    height: 100%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.fitem {
+    color: #ccc;
+    padding-bottom: 14px;
+}
+
+.fitem a {
+    color: #ccc;
+}
+
+.small {
+    color: #666;
+    font-size: 10px;
+}
+
+.section-header {
+    padding-top: 60px;
+    padding-bottom: 20px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #444;
+}
+
+.four .section-header {
+    padding-top: 60px;
+    padding-bottom: 0px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.four p {
+    color: #d5eaff;
+    line-height: 28px;
+}
+
+.four a {
+    color: #fff;
+}
+
+.four code {
+    color: #fff;
+    background: #006cdb;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.four pre {
+    font-size: 14px;
+    padding: 10px;
+    padding-right: 20px;
+    padding-left: 15px;
+    background: #006cdb;
+    font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+    color: #fff;
+    line-height: 20px;
+    margin-top: 20px;
+}
+
+.four h4 {
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    color: #fff;
+}
+
+select {
+    width: 100px;
+}
+
+input[type=text] {
+    width: 90px;
+    padding: 4px;
+}
+
+input[type=submit] {
+    margin-top: 15px;
+    height: 30px;
+    width: 80px;
+    padding: 5px;
+    color: #fff;
+    font-size: 14px;
+    background-color: #007eff;
+    border: none;
+}
+
+input[type=submit]:hover {
+    background-color: #47a2ff;
+}
+
+pre {
+    font-size: 14px;
+    padding: 10px;
+    padding-right: 20px;
+    padding-left: 15px;
+    background: #e4e4e4;
+    font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+    color: #111;
+    line-height: 20px;
+}
+
+h4 {
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+
+table {
+    width: 100%;
+}
+
+thead {
+    border-bottom: 1px solid #ccc;
+}
+
+th {
+    padding-bottom: 10px;
+    padding-right: 20px;
+    text-align: left;
+    font-weight: bold;
+    color: #aaa;
+}
+
+td {
+    padding-top: 12px;
+    padding-right: 20px;
+    padding-bottom: 6px;
+}
