@@ -31,6 +31,13 @@ angular.module('ahpwnApp')
         .$promise.then(function (givenItem)
         {
             $scope.data = angular.toJson(givenItem, true);
+        },
+        function (error)
+        {
+            if (error.data)
+            {
+                $scope.data = angular.toJson(error.data, true);
+            }
         });
     };
 
@@ -54,6 +61,13 @@ angular.module('ahpwnApp')
         .$promise.then(function (givenItem)
         {
             $scope.data = angular.toJson(givenItem, true);
+        },
+        function (error)
+        {
+            if (error.data)
+            {
+                $scope.data = angular.toJson(error.data, true);
+            }
         });
     };
 
@@ -62,10 +76,71 @@ angular.module('ahpwnApp')
 
 .controller('RealtimeCtrl', function ($scope)
 {
-    var client = new Faye.Client('http://rt-us1.herokuapp.com');
+    var statsInterval = 3; // minutes
+    var updateInterval = 2; // seconds
+    var smoothingFactor = 0.1;
+    //var client = new Faye.Client('http://rt-us1.herokuapp.com');
+    var searchItems = [ 72092, 72093, 72988 ];
+    var items = {};
 
-    client.subscribe('/items/72092', function (msg)
-    {
-        console.log('72092:', msg);
-    });
+    //for (var i = 0; i < searchItems.length; i++)
+    //{
+        //var id = searchItems[i];
+
+        //client.subscribe('/items/' + id, function (price)
+        //{
+            //console.log(id, price);
+
+            //if (!items[id])
+            //{
+                //items[id] =
+                //{
+                    //id: id,
+                    //current: price,
+                    //priceCount: 1,
+                    //shiftAt: 10,
+                    //iterator: 0,
+                    //prices: [price]
+                //};
+            //}
+            //else
+            //{
+                //items[id].prices.push(price);
+                //items[id].priceCount++;
+            //}
+        //});
+    //}
+
+    // Calculate shift stats
+    //setInterval(function ()
+    //{
+        //Object.keys(items).forEach(function (id)
+        //{
+            //items[id].shiftAt = Math.round(((60 * statsInterval) / items[id].priceCount) / updateInterval);
+            //items[id].priceCount = 0;
+        //});
+    //}, 60 * statsInterval * 1000);
+
+    // Push new price
+    //setInterval(function ()
+    //{
+        //Object.keys(items).forEach(function (id)
+        //{
+            //if (items[id].iterator > items[id].shiftAt)
+            //{
+                //items[id].iterator = 0;
+                //items[id].prices.shift();
+            //}
+
+            //if (items[id].prices.length > 0)
+            //{
+                //var newPrice = (items[id].prices[0] * smoothingFactor) + (items[id].current * (1 - smoothingFactor));
+                //items[id].current = newPrice;
+
+                //console.log(id, Math.round(items[id].current));
+
+                //items[id].iterator++;
+            //}
+        //});
+    //}, updateInterval * 1000);
 });

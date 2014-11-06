@@ -23,32 +23,28 @@
         <div class="big">ANZU.IO</div>
         <div class="intro">ANZU.IO is a real-time World of Warcraft auction house pricing data API.</div>
 
-        <div ng-controller="RealtimeCtrl">
-            stffz
-        </div>
+        <!--<div class="floater">-->
+          <!--<div class="box">-->
+              <!--<div class="pad">-->
+                  <!--<div class="item">Ghost Iron Ore</div>-->
+                  <!--<div class="price">19.40</div>-->
+              <!--</div>-->
+          <!--</div>-->
 
-        <div class="floater">
-          <div class="box">
-              <div class="pad">
-                  <div class="item">Ghost Iron Ore</div>
-                  <div class="price">19.40</div>
-              </div>
-          </div>
+          <!--<div class="box">-->
+              <!--<div class="pad">-->
+                  <!--<div class="item">Giant Dinosaur Bones</div>-->
+                  <!--<div class="price">34.96</div>-->
+              <!--</div>-->
+          <!--</div>-->
 
-          <div class="box">
-              <div class="pad">
-                  <div class="item">Giant Dinosaur Bones</div>
-                  <div class="price">34.96</div>
-              </div>
-          </div>
-
-          <div class="boxr">
-              <div class="pad">
-                  <div class="item">Windwool Cloth</div>
-                  <div class="price">10.12</div>
-              </div>
-          </div>
-        </div>
+          <!--<div class="boxr">-->
+              <!--<div class="pad">-->
+                  <!--<div class="item">Windwool Cloth</div>-->
+                  <!--<div class="price">10.12</div>-->
+              <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
 
     </div>
 
@@ -160,7 +156,7 @@
             <h4>How is the global market price calculated?</h4>
             <p>The global market price is an exponential moving average that includes every single realm at least once. In simpler terms, the global market price is roughly a weighted average of the item price over the last hour - however the average is not calculated on a time basis but rather on a count basis. The exact formula is defined below:</p>
 
-            <pre>newAverage = (currentPrice * 0.0067) + (lastAverage * (1 - 0.0067))</pre>
+            <pre>marketPrice = (currentPrice * 0.0067) + (lastAverage * (1 - 0.0067))</pre>
 
             <h4>How is the realm current price calculated?</h4>
             <p>The current price is a 15th percentile (15% truncated distribution) mean of the cheapest auctions present in the current realm snapshot.</p>
@@ -168,7 +164,7 @@
             <h4>How is the realm historical average calculated?</h4>
             <p>The realm historical average is an exponential moving average that is weighted towards the last 240 price points. If the price is updated every hour, this would translate into a 10-day moving average (10 * 24 = 240). However depending on item and realm update frequency this period could be longer. The exact formula is defined below:</p>
 
-            <pre>newAverage = (currentPrice * 0.0083) + (lastAverage * (1 - 0.0083))</pre>
+            <pre>historicalAverage = (currentPrice * 0.0083) + (lastAverage * (1 - 0.0083))</pre>
 
             <h4>How does your service work?</h4>
             <p>A technical demonstration article will be released soon that explains the technical architecture of this service. For the time being, you are free to checkout the project on <a href="https://github.com/anzuio">Github</a>.</p>
@@ -229,7 +225,7 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <script type="text/javascript" src="http://rt-us1.herokuapp.com/faye/client.js"></script>
+    <!--<script type="text/javascript" src="http://rt-us1.herokuapp.com/faye/client.js"></script>-->
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
