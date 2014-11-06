@@ -127,7 +127,7 @@
             <div class="section-header">FAQ</div>
 
             <h4>What is a realm slug?</h4>
-            <p>The realm slug is the realm name in all lower case without any apostrophes, and spaces are replaced with dashes. For example, for the realm <code>Blade's Edge</code>, the slug would be <code>blades-edge</code>. You can get a list of all the valid realm slugs (on which ANZU.IO are based on) using the Realm Status resource from the Battle.net API. See <a href="https://dev.battle.net/">https://dev.battle.net/</a> for more information.</p>
+            <p>The realm slug is the realm name in all lower case without any apostrophes and spaces replaced with dashes. For example, for the realm <code>Blade's Edge</code>, the slug would be <code>blades-edge</code>. You can get a list of all the valid realm slugs using the "Realm Status" resource from the Battle.net API. See <a href="https://dev.battle.net/">https://dev.battle.net/</a> for more information.</p>
 
             <h4>How is the global market price calculated?</h4>
             <p>The global market price is an exponential moving average that includes every single realm at least once. In simpler terms, the global market price is roughly a weighted average of the item price over the last hour - however the average is not calculated on a time basis but rather on a count basis. The exact formula is defined below:</p>
@@ -138,15 +138,15 @@
             <p>The current price is a 15th percentile (15% truncated distribution) mean of the cheapest auctions present in the current realm snapshot.</p>
 
             <h4>How is the realm historical average calculated?</h4>
-            <p>The realm historical average is an exponential moving average that is weighted towards the last 240 price points. If the price is updated every hour, this would translate into a 10-day moving average (10 * 24 = 240). However depending on item and realm update frequency this period could be longer. The exact formula is defined below:</p>
+            <p>The realm historical average is an exponential moving average that is weighted towards the last 240 price points. If the price is updated every hour, this would translate into a 10-day moving average (10 * 24 = 240). However depending on item and realm update frequency this period could be shorter or longer. The exact formula is defined below:</p>
 
             <pre>historicalAverage = (currentPrice * 0.0083) + (lastAverage * (1 - 0.0083))</pre>
 
-            <h4>How does your service work?</h4>
-            <p>A technical demonstration article will be released soon that explains the technical architecture of this service. For the time being, you are free to checkout the project on <a href="https://github.com/anzuio">Github</a>.</p>
+            <h4>How does the ANZU.IO service work?</h4>
+            <p>An article will be released in the near future that explains the technical architecture of ANZU.IO. For the time being, you are free to checkout the project on <a href="https://github.com/anzuio">Github</a>.</p>
 
-            <h4>Can you add a new feature?</h4>
-            <p>Feature requests will be considered on an individual basis. Please get in contact using one of the methods listed at the bottom of this page to submit your feature request. If you are a developer, you can feel free to submit merge pull requests or fork the project.</p>
+            <h4>Can a new feature be added?</h4>
+            <p>Feature requests will be considered on an individual basis. Please get in contact using one of the methods listed at the bottom of this page to submit your feature request. If you are a developer, please feel free to submit a merge pull request or fork the project.</p>
         </div>
     </div>
 
