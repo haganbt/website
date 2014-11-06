@@ -1,6 +1,6 @@
 {
   "name": "ahpwn",
-  "version": "2.4.1",
+  "version": "2.4.2",
   "dependencies": {},
   "devDependencies": {
     "grunt": "^0.4.1",
